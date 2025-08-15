@@ -1,58 +1,65 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
 .container {
     max-width: 400px;
-    margin: 30px auto;
-    padding: 20px;
+    margin: 40px auto;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    text-align: left;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .logo {
     display: block;
     margin: 0 auto 20px;
-    width: 120px;
-    border-radius: 8px;
+    max-width: 200px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
 }
 
-h2 {
+.instrucao {
     text-align: center;
+    font-size: 14px;
+    color: #555;
     margin-bottom: 20px;
 }
 
-label {
+form label {
     display: block;
-    margin: 10px 0 5px;
+    margin-top: 10px;
     font-weight: bold;
 }
 
-input, select, textarea {
+form input, form select, form button {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-top: 5px;
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    box-sizing: border-box;
 }
 
-button {
-    background-color: #000;
+/* Botão estilizado igual ao do seu amigo */
+form button {
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
     color: white;
-    padding: 10px;
     border: none;
-    width: 100%;
-    font-size: 16px;
+    margin-top: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
 }
 
-button:hover {
-    background-color: #333;
+form button:hover {
+    background: linear-gradient(90deg, #ee0979, #ff6a00);
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
 }
