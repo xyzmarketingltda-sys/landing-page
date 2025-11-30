@@ -14,7 +14,6 @@
 
         <p class="instrucao">Faça seu cadastro que um de nossos consultores irá entrar em contato.</p>
 
-        <!-- FORMULÁRIO COM SUA WEB APP URL -->
         <form id="cadastroForm" action="https://script.google.com/macros/s/AKfycbwdPBK1r6EV16kGophzXPspFXQ6pAFyrxsMVuwjyf7lDLDe-v9bU4WtqqT00kM_n6_/exec" method="POST">
 
             <label for="cpf">CPF</label>
@@ -34,7 +33,6 @@
     </div>
 
     <script>
-        // Máscara de CPF
         document.getElementById('cpf').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 3 && value.length <= 6)
@@ -46,7 +44,6 @@
             e.target.value = value;
         });
 
-        // Máscara de telefone
         document.getElementById('whatsapp').addEventListener('input', function (e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 2 && value.length <= 6)
@@ -58,7 +55,6 @@
             e.target.value = value;
         });
 
-        // Máscara de Data de Nascimento (dd/mm/aaaa)
         document.getElementById('nascimento').addEventListener('input', function (e) {
             let v = e.target.value.replace(/\D/g, "");
             if (v.length > 2 && v.length <= 4) {
