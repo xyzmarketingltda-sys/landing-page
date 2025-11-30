@@ -10,10 +10,15 @@
 <body>
     <div class="container">
 
-        <!-- IMAGEM COM BORDA E ANIMAÇÃO -->
-        <img src="xyz-promotora.png" 
-             alt="Logo XYZ Promotora" 
-             class="logo luz-piscando">
+        <!-- LOGO COM LUZES -->
+        <div class="logo-wrapper">
+            <img src="xyz-promotora.png" class="logo">
+
+            <!-- LUZES PISCANDO -->
+            <div class="luz l1"></div>
+            <div class="luz l2"></div>
+            <div class="luz l3"></div>
+        </div>
 
         <p class="sms-info">Preencha e sua proposta será enviada via SMS.</p>
         <p class="instrucao">Faça seu cadastro que um consultor entrará em contato.</p>
@@ -35,13 +40,13 @@
             <label for="nascimento">Data de Nascimento</label>
             <input type="text" id="nascimento" name="nascimento" placeholder="dd/mm/aaaa" required maxlength="10">
 
-            <button type="submit" class="btn-enviar">📨 Enviar Cadastro</button>
+            <button type="submit">📨 Enviar Cadastro</button>
         </form>
     </div>
 
     <script>
         // Máscara CPF
-        document.getElementById('cpf').addEventListener('input', function(e) {
+        cpf.addEventListener('input', e => {
             let v = e.target.value.replace(/\D/g, "");
             if (v.length > 3 && v.length <= 6) v = v.replace(/(\d{3})(\d+)/, "$1.$2");
             else if (v.length > 6 && v.length <= 9) v = v.replace(/(\d{3})(\d{3})(\d+)/, "$1.$2.$3");
@@ -50,7 +55,7 @@
         });
 
         // Máscara WhatsApp
-        document.getElementById('whatsapp').addEventListener('input', function(e) {
+        whatsapp.addEventListener('input', e => {
             let v = e.target.value.replace(/\D/g, "");
             if (v.length > 2 && v.length <= 6) v = v.replace(/(\d{2})(\d+)/, "($1) $2");
             else if (v.length > 6 && v.length <= 10) v = v.replace(/(\d{2})(\d{4})(\d+)/, "($1) $2-$3");
@@ -58,14 +63,13 @@
             e.target.value = v;
         });
 
-        // Máscara Data de Nascimento
-        document.getElementById('nascimento').addEventListener('input', function(e) {
+        // Máscara nascimento
+        nascimento.addEventListener('input', e => {
             let v = e.target.value.replace(/\D/g, "");
             if (v.length > 2 && v.length <= 4) v = v.replace(/(\d{2})(\d+)/, "$1/$2");
             else if (v.length > 4) v = v.replace(/(\d{2})(\d{2})(\d+)/, "$1/$2/$3");
             e.target.value = v;
         });
     </script>
-
 </body>
 </html>
