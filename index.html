@@ -10,6 +10,8 @@
     <div class="container">
         <img src="xyz-promotora.png" alt="Logo XYZ Promotora" class="logo">
 
+        <p class="sms-info">Preencha e sua proposta será enviada via SMS.</p>
+
         <p class="instrucao">Faça seu cadastro que um de nossos consultores irá entrar em contato.</p>
 
         <form action="https://formsubmit.co/xyzmarketingltda@gmail.com" method="POST">
@@ -27,39 +29,7 @@
             <input type="tel" id="whatsapp" name="whatsapp" placeholder="(DDD) 90000-0000" required maxlength="15">
 
             <label for="nascimento">Data de Nascimento</label>
-            <input type="date" id="nascimento" name="nascimento" required>
-
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado" required>
-                <option value="">Selecione</option>
-                <option value="AC">Acre</option>
-                <option value="AL">Alagoas</option>
-                <option value="AP">Amapá</option>
-                <option value="AM">Amazonas</option>
-                <option value="BA">Bahia</option>
-                <option value="CE">Ceará</option>
-                <option value="DF">Distrito Federal</option>
-                <option value="ES">Espírito Santo</option>
-                <option value="GO">Goiás</option>
-                <option value="MA">Maranhão</option>
-                <option value="MT">Mato Grosso</option>
-                <option value="MS">Mato Grosso do Sul</option>
-                <option value="MG">Minas Gerais</option>
-                <option value="PA">Pará</option>
-                <option value="PB">Paraíba</option>
-                <option value="PR">Paraná</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RJ">Rio de Janeiro</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="RS">Rio Grande do Sul</option>
-                <option value="RO">Rondônia</option>
-                <option value="RR">Roraima</option>
-                <option value="SC">Santa Catarina</option>
-                <option value="SP">São Paulo</option>
-                <option value="SE">Sergipe</option>
-                <option value="TO">Tocantins</option>
-            </select>
+            <input type="text" id="nascimento" name="nascimento" placeholder="dd/mm/aaaa" required maxlength="10">
 
             <button type="submit">📨 Enviar Cadastro</button>
         </form>
@@ -88,6 +58,17 @@
             else if (value.length > 10)
                 value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
             e.target.value = value;
+        });
+
+        // Máscara de Data de Nascimento (dd/mm/aaaa)
+        document.getElementById('nascimento').addEventListener('input', function (e) {
+            let v = e.target.value.replace(/\D/g, "");
+            if (v.length > 2 && v.length <= 4) {
+                v = v.replace(/(\d{2})(\d+)/, "$1/$2");
+            } else if (v.length > 4) {
+                v = v.replace(/(\d{2})(\d{2})(\d+)/, "$1/$2/$3");
+            }
+            e.target.value = v;
         });
     </script>
 </body>
