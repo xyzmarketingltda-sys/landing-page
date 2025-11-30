@@ -1,105 +1,134 @@
+/* ---- CORE ---- */
+* { box-sizing: border-box; }
 body {
-    background: #f1f1f1;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f5f6;
+  font-family: Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-
 .container {
-    max-width: 360px;
-    margin: auto;
-    background: white;
-    padding: 18px;
-    border-radius: 18px;
-    box-shadow: 0px 0px 12px rgba(0,0,0,0.15);
-    text-align: center;
+  max-width: 420px;
+  margin: 8px auto;
+  padding: 14px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
-/* ENVOLVE A IMAGEM */
-.logo-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 260px;   /* <<< Tam ideal p/ caber em QUALQUER celular */
-    margin: auto;
-    margin-bottom: 18px;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 0 16px rgba(0,0,0,0.4);
+/* ==== IMAGEM + VELHINHO ==== */
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
+/* caixa da logo */
+.logo-box {
+  flex: 1 1 auto;
+  max-width: 260px;
+  margin-right: 8px;
+}
 .logo {
-    width: 100%;
-    display: block;
-    border-radius: 18px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
 }
 
-/* --- LUZES INDIVIDUAIS --- */
-/* Cada luz é uma bolinha posicionada manualmente */
-
-.luz {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    background: rgba(255,255,200,0.9);
-    border-radius: 50%;
-    filter: blur(8px);
-    opacity: 0;
-    animation: piscar 3s infinite ease-in-out;
+/* pixel velhinho (SVG wrapper) */
+.pixel-velhinho {
+  width: 120px;
+  height: 120px;
+  flex: 0 0 120px;
 }
 
-/* POSIÇÕES DAS LUZES EM CIMA DAS JANELAS */
-.l1 { top: 18%; left: 62%; animation-delay: 0s; }
-.l2 { top: 42%; left: 28%; animation-delay: 1.2s; }
-.l3 { top: 68%; left: 70%; animation-delay: 2s; }
-
-/* ANIMAÇÃO GARANTIDA EM QUALQUER DISPOSITIVO */
-@keyframes piscar {
-    0%   { opacity: 0; }
-    50%  { opacity: 1; }
-    100% { opacity: 0; }
+/* ---- ANIMAÇÃO DOS FRAMES (SVG groups f1,f2,f3) ---- */
+/* usamos opacidade para alternar frames (compatível com browsers antigos) */
+.pixel-velhinho .f1,
+.pixel-velhinho .f2,
+.pixel-velhinho .f3 {
+  opacity: 0;
+  transition: opacity 260ms linear;
 }
 
-
-/* TEXTOS */
-.sms-info {
-    font-size: 16px;
-    margin-bottom: 4px;
+/* keyframe para sequência suave: f1 -> f2 -> f3 -> f1 */
+@keyframes velhinhoLoop {
+  0%   { opacity: 1; }   /* f1 */
+  30%  { opacity: 0; }   /* fade */
+  33%  { opacity: 0; }   /* f2 on next step via nth-child trick below */
+  63%  { opacity: 0; }
+  66%  { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.instrucao {
-    font-size: 15px;
-    margin-bottom: 16px;
+/* Em vez de animar groups diretamente (alguns mobiles têm issues),
+   vamos controlar opacidade dos três grupos alternando via animation-delay. */
+
+/* frame 1 */
+.pixel-velhinho .f1 {
+  animation: showFrame 3600ms infinite;
+  animation-delay: 0ms;
 }
 
+/* frame 2 */
+.pixel-velhinho .f2 {
+  animation: showFrame 3600ms infinite;
+  animation-delay: 1200ms;
+}
+
+/* frame 3 */
+.pixel-velhinho .f3 {
+  animation: showFrame 3600ms infinite;
+  animation-delay: 2400ms;
+}
+
+/* regra que mostra o frame (fade in/out) */
+@keyframes showFrame {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* ==== textos ==== */
+.sms-info, .instrucao {
+  text-align: center;
+  font-size: 15px;
+  color: #222;
+  margin: 6px 2px;
+}
+
+/* ==== form ==== */
 label {
-    display: block;
-    text-align: left;
-    font-weight: bold;
-    margin-top: 10px;
-    font-size: 16px;
+  display: block;
+  font-weight: 700;
+  margin-top: 10px;
+  font-size: 15px;
 }
-
 input {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    font-size: 17px;
-    margin-top: 4px;
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 9px;
+  border: 1px solid #ccc;
+  font-size: 16px;
 }
-
 button {
-    width: 100%;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 16px;
-    font-size: 18px;
-    border-radius: 12px;
-    margin-top: 18px;
-    cursor: pointer;
+  width: 100%;
+  padding: 14px;
+  margin-top: 14px;
+  border-radius: 10px;
+  background: #007bff;
+  color: white;
+  font-weight: 700;
+  font-size: 17px;
+  border: none;
 }
 
-button:active {
-    background: #005fcc;
+/* pequenas melhorias para Android ruim */
+@media (max-width: 360px) {
+  .pixel-velhinho { width: 96px; height: 96px; flex: 0 0 96px; }
+  .logo-box { max-width: 200px; margin-right: 6px; }
 }
